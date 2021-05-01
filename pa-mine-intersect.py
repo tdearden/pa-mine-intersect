@@ -4,6 +4,7 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import geopandas as gpd
 import matplotlib.pyplot as plt
+import contextily as ctx
 
 
 #spatial intersection using spatial index
@@ -50,7 +51,7 @@ intersection_cnt = gpd.sjoin(pa, mines_shp).groupby('NAME').size().reset_index()
 intersection_cnt.head()
 
 #First product: map with all mines and protected areas, intersecting mines in blue
-pa_map, ax = plt.subplots(1, 1, figsize=(10, 10), subplot_kw=dict(projection=ccrs.Mercator()))
+pa_map, ax = plt.subplots(1, 1, figsize=(12, 12), subplot_kw=dict(projection=ccrs.Mercator()))
 
 xmin, ymin, xmax, ymax = pa.total_bounds
 ax.set_extent([xmin, xmax, ymin, ymax], crs=ccrs.Mercator())
@@ -61,7 +62,8 @@ pa_h = pa.plot("DESIG_ENG", legend=True, ax=ax, cmap="Greens", legend_kwds={'loc
 mines_shp.plot(marker='o', ax=ax, color="blue", markersize=2, legend = True)
 pa_mine_intersect.plot(marker='o', ax=ax, color="red", markersize=10)
 
-pa_map.suptitle('Protected Areas and Mining Locations in the Democratic Republic of Congo')
+pa_map.suptitle('Designated Protected Areas, Mining, and Mining Intersections in the Democratic Republic of Congo')
+ctx.add_basemap(ax, source=ctx.providers.CartoDB.Positron)
 plt.savefig('drc_pas_mines_intersect.png',dpi=300)
 
 #Merge and plot

@@ -4,6 +4,9 @@ channels:
   - defaults
 dependencies:
   - python=3.8.8
+  - pip
   - cartopy
   - geopandas
   - matplotlib
+  - shapely
+  - contextily
