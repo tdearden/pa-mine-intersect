@@ -2,6 +2,7 @@
 <p> This tool provides a method of finding intersects between mining points and protected area polygons in the Democratic Republic of Congo. This is achieved through the creating spatial indexes to examine intersections between the two files. The expected results include: a .png national-level map of protected areas, mining points and points of intersection; a CSV of all protected areas with the number of mining points intersecting the polygon; and a .png figure with subplots of the locations of the mines within the protected areas. This tool could be scalable to different countries and protected areas. </p>
 <p> The rationale for creating this tool was to track and monitor voluntary GIS activity tagged as “mining” which could be occurring in areas with high biodiversity value.</p>
 
+![screenshot](https://user-images.githubusercontent.com/41048297/116794842-8965c600-aad0-11eb-8384-f70d8b0506c5.png)
 
 
 <h1>Installation</h1>
