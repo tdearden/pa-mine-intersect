@@ -7,9 +7,9 @@
 <h1>Installation</h1>
 The requirement for running the code is to create a conda environment containing the packages needed to run the functions in python. After downloading or cloning the GitHub repository, from the conda command line use the environment.yml file to create the new conda environment. This can be done by using the following prompt: 
 
-`conda env create –prefix pa-mine-intersect -f /yml file path/environment.yml`
+`conda env create -f /__yml file path__/environment.yml`
 
-Replacing the yml file path to location of the environment.yml file.  
+Replacing the _yml file path_ to location of the environment.yml file.  
 
 The packages required to run the code are:
 <ul><li>	cartopy.crs
@@ -18,10 +18,10 @@ The packages required to run the code are:
 </li><li>	matplotlib
 </li><li>	contextily
 </li></ul>
-Activate the newly created environment and use it to run the tool. 
+Activate the newly created environment and use it to run the tool. For explanatory and visual purposes, a completed version of this code has been uploaded to the GitHub Repository as a Jupyter Notebook file: pa-mine-intersect-tutorial.ipynb. 
 
 <h2>Data Preparation</h2>
-The data for this specific example are available in the data_files folder. It is recommended to use this as an initial test, as it has been prepared specifically for this code. However, if you wish to download the data from the source, or test it using different datasets, instructions for that are provided here. 
+The data for this example are available in the data_files folder. It is recommended to use this as an initial test, as it has been prepared specifically for this tool. However, if you wish to download the data from the source, or test it using different datasets, instructions for that are provided here. 
 
 The Protected Planet <a href="https://www.protectedplanet.net/country/COD"> “World Database on Protected Areas”</a> data can be downloaded from the website, at a global, national, or protected area level, without restriction. For the purpose of this tool, the data was adapted to remove sites tagged as “UNESCO World Heritage Sites”, primarily because these are not necessarily related to high-value biodiversity areas.  
 
@@ -40,7 +40,11 @@ The data required for the OSM mines file was downloaded from the DRC OSM team, t
 <br><i>
 UserWarning: The Shapely GEOS version (3.9.1-CAPI-1.14.2) is incompatible with the GEOS version PyGEOS was compiled with (3.9.0-CAPI-1.16.2). Conversions between both will be slow.
   warnings.warn(</i><br>This will not affect the expected results. </li>
-<li>•	Virguna National Park is mapped twice in the final subplots. This is because it has been registered as both a National Park and a Ramsar Heritage Site on Protected Planet, meaning there are two polygons to represent the same area. </li>
+<li>When converting the .geoJSON mining file to .shp, the following warning can be expected, which does not affect the expected result: 
+<br>
+<i>UserWarning: Column names longer than 10 characters will be truncated when saved to ESRI Shapefile. mines_points.to_file("data_files/osm_congo_mining_points.shp")
+</i></li>
+<li>Virguna National Park is mapped twice in the final subplots. This is because it has been registered as both a National Park and a Ramsar Heritage Site on Protected Planet, meaning there are two polygons to represent the same area. </li>
 
 </ul>
 </p>

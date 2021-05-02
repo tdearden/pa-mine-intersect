@@ -6,6 +6,7 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 import contextily as ctx
 
+plt.ion()
 
 #spatial intersection using spatial index
 def intersect_sindex(source, intersecting):
@@ -25,7 +26,6 @@ def intersect_sindex(source, intersecting):
     result = possible_matches.loc[possible_matches.intersects(intersecting.unary_union)]
     return result
 
-plt.ion()
 
 #Load PA data
 pa = gpd.read_file('data_files/WDPA_DRC_2021_proj.shp')
@@ -50,7 +50,7 @@ pa_mine_intersect = intersect_sindex(source=mines_shp, intersecting=pa)
 intersection_cnt = gpd.sjoin(pa, mines_shp).groupby('NAME').size().reset_index()
 intersection_cnt.head()
 
-#First product: map with all mines and protected areas, intersecting mines in blue
+#First product: national map with all mines and protected areas, intersecting mines in red, basemap features, legend
 pa_map, ax = plt.subplots(1, 1, figsize=(12, 12), subplot_kw=dict(projection=ccrs.Mercator()))
 
 xmin, ymin, xmax, ymax = pa.total_bounds
@@ -66,9 +66,10 @@ pa_map.suptitle('Designated Protected Areas, Mining, and Mining Intersections in
 ctx.add_basemap(ax, source=ctx.providers.CartoDB.Positron)
 plt.savefig('drc_pas_mines_intersect.png',dpi=300)
 
-#Merge and plot
+#Merge intersections and plot
 intersection_cnt = intersection_cnt.rename(columns={0: 'intersection_cnt'})
 pa = pa.merge(intersection_cnt, on='NAME')
+print(pa.head)
 pa.to_csv('pa_mine_intersection_cnt.csv', header=True)
 
 #print maps with mines intersecting over PA
