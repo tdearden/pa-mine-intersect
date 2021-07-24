@@ -29,7 +29,7 @@ def intersect_sindex(source, intersecting):
 
 #Load PA data
 pa = gpd.read_file('data_files/WDPA_DRC_2021_proj.shp')
-pa = pa.to_crs('espg:32733')
+pa = pa.to_crs('epsg:32733')
 
 #Load mine data and transform to UTM
 mines = gpd.read_file('data_files/osm_rd_congo_infrastructures_mining_fabrication.geojson')
